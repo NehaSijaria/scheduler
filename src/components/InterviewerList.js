@@ -16,8 +16,8 @@ import React, { useState } from "react";
              avatar={person.avatar}
              name={person.name}
             //  setInterviewer={props.setInterviewer}
-            setInterviewer={(event) => props.setInterviewer(person.id)}
-             selected={props.interviewer === person.id}
+            setInterviewer={(event) => props.onChange(person.id)}
+            selected={person.id === props.value}
            />
          ))}
        </ul>
