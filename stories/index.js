@@ -5,7 +5,7 @@ import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList";
 import Appointment from "components/Appointment";
 import Header from "components/Appointment/Header";
-import empty from "components/Appointment/empty";
+import Empty from "components/Appointment/Empty";
 import show from "components/Appointment/show";
 import Confirm from "components/Appointment/Confirm";
 import { storiesOf } from "@storybook/react";

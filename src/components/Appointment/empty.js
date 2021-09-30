@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function empty() {
+export default function Empty() {
   return (
    <main className="appointment__add">
       <img
