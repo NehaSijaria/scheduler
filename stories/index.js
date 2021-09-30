@@ -6,6 +6,7 @@ import InterviewerList from "components/InterviewerList";
 import Appointment from "components/Appointment";
 import Header from "components/Appointment/Header";
 import empty from "components/Appointment/empty";
+import show from "components/Appointment/show";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
