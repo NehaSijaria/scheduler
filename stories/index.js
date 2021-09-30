@@ -7,6 +7,7 @@ import Appointment from "components/Appointment";
 import Header from "components/Appointment/Header";
 import empty from "components/Appointment/empty";
 import show from "components/Appointment/show";
+import Confirm from "components/Appointment/Confirm";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
@@ -148,5 +149,13 @@ storiesOf("Appointment", module)
       interviewer={interviewer}
       onEdit={action("onEdit")}
       onDelete={action("onDelete")}
+    />
+  ))
+
+  .add("Confirm", () => (
+    <Confirm
+      message={"Delete the appointment?"}
+      onConfirm={action("onConfirm")}
+      onCancel={action("onCancel")}
     />
   ));
