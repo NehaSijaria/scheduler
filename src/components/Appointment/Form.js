@@ -4,17 +4,30 @@ import { useState } from 'react';
 import Button from 'components/Button'
 
 export default function Form(props  ) {
-  const { name, interviewers, onSave, onCancel } = props;
+  const {interviewers, onSave, onCancel } = props;
   const [name, setName] = useState(props.name || ""); 
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
+
+  //Helper function to clear form values
+
+  function reset() {
+    setName("");
+    setInterviewer(null);
+  }
+
+  function cancel() {
+    reset();
+    onCancel();
+  }
 
   return (
     <main className="appointment__card appointment__card--create">
   <section className="appointment__card-left">
-    <form autoComplete="off">
+    <form autoComplete="off" onSubmit={event => event.preventDefault()}>
       <input
+        onChange={event => setName(event.target.value)}
         className="appointment__create-input text--semi-bold"
-        name="name"
+        value={name}
         type="text"
         placeholder="Enter Student Name"
         /*
@@ -33,7 +46,7 @@ export default function Form(props  ) {
       <Button danger onClick={onCancel}>
         Cancel
       </Button>
-      <Button confirm onClick={onSave}>
+      <Button confirm onClick={event => props.onSave(name, interviewer)}>
         Save
       </Button>
     </section>
