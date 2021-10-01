@@ -1,10 +1,10 @@
 import React from "react";
 import Show from "./Show";
 import Empty from "./Empty";
-import Header from "./header";
+import Header from "./Header";
 import "components/Appointment/styles.scss";
 
- function Appointment() {
+ function Appointment(props) {
    return <article className="appointment">
      <Header time={props.time} />
       {props.interview ? (
