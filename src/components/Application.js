@@ -1,108 +1,57 @@
-//import React from "react";
 import "components/Application.scss";
 import Appointment from "./Appointment";
 import React, { useState, useEffect } from "react";
 import DayList from "components/DayList";
+import { getAppointmentsForDay } from "helpers/selectors";
 import axios from "axios";
 
-// const days = [
-//   {
-//     id: 1,
-//     name: "Monday",
-//     spots: 2,
-//   },
-//   {
-//     id: 2,
-//     name: "Tuesday",
-//     spots: 5,
-//   },
-//   {
-//     id: 3,
-//     name: "Wednesday",
-//     spots: 0,
-//   },
-// ];
-const appointments = [
-  {
-    id: 1,
-    time: "12pm",
-  },
-  {
-    id: 2,
-    time: "1pm",
-    interview: {
-      student: "Lydia Miller-Jones",
-      interviewer: {
-        id: 1,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
-      },
-    },
-  },
-  {
-    id: 3,
-    time: "2pm",
-  },
-  {
-    id: 4,
-    time: "3pm",
-    interview: {
-      student: "Arche Cohen",
-      interviewer: {
-        id: 3,
-        name: "Tori Molcolm",
-        avatar: "https://i.imgur.com/T2WwVfS.png",
-      },
-    },
-  },
-  {
-    id: 5,
-    time: "4pm",
-    interview: {
-      student: "MAria Boucher",
-      interviewer: {
-        id: 3,
-        name: "Mildred Nazir",
-        avatar: "https://i.imgur.com/T2WwVfS.png",
-      },
-    },
-  },
-];
-
-
-export default function Application() {
+//days & appointmentsdeleted
+export default function Application(props) {
   // const [day, setDay] = useState("Monday");
   // const [days, setDays] = useState([]);
-  // console.log("Application.js > day:", day);
   //Replace with:
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    appointments: {}
+    appointments: {},
   });
   //updates the state with the new day.
   const setDay = day => setState({ ...state, day });
-  const setDays = (days) => {
-    //... your code here ...
-    setState(prev => ({ ...prev, days }));
-} 
+  //remove set days function
+//   const setDays = (days) => {
+//     //... your code here ...
+//     setState(prev => ({ ...prev, days }));
+// } 
 
   useEffect(() => {
-    axios.get("/api/days").then((response) => {
-      // console.log(response.data);
-      setDays(response.data);
-    });
+    // axios.get("/api/days").then((response) => {
+    //   // console.log(response.data);
+    //   setDays(response.data);
+    // });
+    Promise.all([
+      axios.get("/api/days"),
+      axios.get("/api/appointments"),
+      ])
+      .then(
+      (all) => {
+        console.log('all.....', all)
+      setState(prev => ({ 
+        ...prev, 
+        days: all[0].data,
+        appointments: all[1].data,
+       }));
+      });
   }, []); 
-
-  const ListOfAppointments = appointments.map((appointment) => {
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
+  console.log('daily appts: ;;;;;', dailyAppointments)
+  const ListOfAppointments = dailyAppointments.map((appointment) => {
     return (
     <Appointment
       key={appointment.id}
-      {...appointment}
+      {...appointment}  
     />
     )
   })
-
 
   return (
     <main className="layout">
@@ -130,7 +79,10 @@ export default function Application() {
       <section className="schedule">
         {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
         {ListOfAppointments}
-        <Appointment key={"last"} time={"5PM"} />
+        <Appointment 
+          key={"last"} 
+          time={"5PM"} 
+        />
       </section>
     </main>
   );
