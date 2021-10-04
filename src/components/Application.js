@@ -1,26 +1,27 @@
 //import React from "react";
 import "components/Application.scss";
 import Appointment from "./Appointment";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DayList from "components/DayList";
+import axios from "axios";
 
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2,
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5,
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0,
-  },
-];
+// const days = [
+//   {
+//     id: 1,
+//     name: "Monday",
+//     spots: 2,
+//   },
+//   {
+//     id: 2,
+//     name: "Tuesday",
+//     spots: 5,
+//   },
+//   {
+//     id: 3,
+//     name: "Wednesday",
+//     spots: 0,
+//   },
+// ];
 const appointments = [
   {
     id: 1,
@@ -71,7 +72,25 @@ const appointments = [
 
 export default function Application() {
   const [day, setDay] = useState("Monday");
+  const [days, setDays] = useState([]);
   console.log("Application.js > day:", day);
+
+  useEffect(() => {
+    axios.get("/api/days").then((response) => {
+      // console.log(response.data);
+      setDays(response.data);
+    });
+  }, []); 
+
+  const ListOfAppointments = appointments.map((appointment) => {
+    return (
+    <Appointment
+      key={appointment.id}
+      {...appointment}
+    />
+    )
+  })
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -83,7 +102,11 @@ export default function Application() {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <DayList days={days} day={day} setDay={setDay} />
+          <DayList 
+          days={days} 
+          day={day} 
+          setDay={setDay} 
+          />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
@@ -93,10 +116,7 @@ export default function Application() {
       </section>
       <section className="schedule">
         {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
-        {appointments.map((appointment) => (
-          <Appointment key={appointment.id} {...appointment} />
-        )
-      )}
+        {ListOfAppointments}
         <Appointment key={"last"} time={"5PM"} />
       </section>
     </main>
