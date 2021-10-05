@@ -2,7 +2,7 @@ import "components/Application.scss";
 import Appointment from "./Appointment";
 import React, { useState, useEffect } from "react";
 import DayList from "components/DayList";
-import { getAppointmentsForDay, getInterview} from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay, } from "helpers/selectors";
 import axios from "axios";
 
 //days & appointmentsdeleted

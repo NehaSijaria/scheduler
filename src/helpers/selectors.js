@@ -5,12 +5,10 @@ export function getAppointmentsForDay(state, day) {
   console.log("dayMatch", dayMatch)
   if(!dayMatch[0]) {
     return [];
-  }
-  
+  }  
   for (let appt of dayMatch[0].appointments) {
     arrOfAppt.push(state.appointments[appt]);
   }
-
   return arrOfAppt;
 }
 
@@ -24,3 +22,11 @@ export function getInterview(state,interview){
     return null;
   }
 }
+
+export function getInterviewersForDay(state,day){
+  let interViewerList = [];
+  const daymatch = state.days.filter((Day) => Day.name === day);
+  console.log('for interviewer',daymatch);
+  console.log(daymatch); 
+}
+
