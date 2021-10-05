@@ -24,7 +24,7 @@ function Appointment(props) {
     />  
     )}
      {mode === CREATE && (
-        <Form interviewers={[]} onCancel={() => transition(EMPTY)} />
+        <Form interviewers={[]} onCancel={() => back(EMPTY)} />
     )}
     
      </article>
