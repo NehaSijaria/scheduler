@@ -11,7 +11,7 @@ export default function useVisualMode(initial) {
       history[itemOnTop] = newMode;
       setMode(newMode);
     } else {
-      setMode(newMode);
+      setMode(newMode); //first step
       history.push(newMode);
     }
   }
