@@ -13,3 +13,14 @@ export function getAppointmentsForDay(state, day) {
 
   return arrOfAppt;
 }
+
+export function getInterview(state,interview){
+  if(interview){
+    const idOfInterviewer = interview.interviewer;
+    const interviewer = state.interviewers[idOfInterviewer]
+    return {...interview, interviewer}
+  }
+  else {
+    return null;
+  }
+}

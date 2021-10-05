@@ -2,7 +2,7 @@ import "components/Application.scss";
 import Appointment from "./Appointment";
 import React, { useState, useEffect } from "react";
 import DayList from "components/DayList";
-import { getAppointmentsForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview } from "helpers/selectors";
 import axios from "axios";
 
 //days & appointmentsdeleted
@@ -14,6 +14,7 @@ export default function Application(props) {
     day: "Monday",
     days: [],
     appointments: {},
+    interviewers: {}
   });
   //updates the state with the new day.
   const setDay = day => setState({ ...state, day });
@@ -31,6 +32,7 @@ export default function Application(props) {
     Promise.all([
       axios.get("/api/days"),
       axios.get("/api/appointments"),
+      axios.get("/api/interviewers")
       ])
       .then(
       (all) => {
@@ -39,16 +41,21 @@ export default function Application(props) {
         ...prev, 
         days: all[0].data,
         appointments: all[1].data,
+        interviewers: all[2].data
        }));
       });
   }, []); 
-  const dailyAppointments = getAppointmentsForDay(state, state.day);
-  console.log('daily appts: ;;;;;', dailyAppointments)
-  const ListOfAppointments = dailyAppointments.map((appointment) => {
+  // const dailyAppointments = getAppointmentsForDay(state, state.day);
+  // const ListOfAppointments = dailyAppointments.map((appointment) => {
+  const appointments = getAppointmentsForDay(state, state.day);
+  const schedule = appointments.map((appointment) => {
+    const interview = getInterview(state, appointment.interview);
     return (
     <Appointment
       key={appointment.id}
       {...appointment}  
+      time={appointment.time}
+      interview={interview}
     />
     )
   })
@@ -78,7 +85,7 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
-        {ListOfAppointments}
+        {schedule}
         <Appointment 
           key={"last"} 
           time={"5PM"} 
