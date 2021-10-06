@@ -19,12 +19,16 @@ function Appointment(props) {
       student: name,
       interviewer
     };
-
     props.bookInterview(props.id, interview)
     .then (() => transition(SHOW));
  
   }
-    
+
+  function deleteApp() {
+    props.cancelInterview(props.id)
+    .then (() => transition(EMPTY));
+  }
+  
   return (
     <article className="appointment">
     <Header time={props.time} />
@@ -33,6 +37,7 @@ function Appointment(props) {
     <Show
       student={props.interview.student}
       interviewer={props.interview.interviewer}
+      onDelete={deleteApp}
     />  
     )}
      {mode === CREATE && (
