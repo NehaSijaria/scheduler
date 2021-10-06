@@ -5,12 +5,16 @@ import Header from "./Header";
 import "components/Appointment/styles.scss";
 import Form from "./Form";
 import useVisualMode from "hooks/useVisualMode";
+import Status from "./Status";
 
 function Appointment(props) {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
-  const { mode, transition, back } = useVisualMode(
+  const SAVING = "SAVING";
+  const DELETING = "DELETE";
+
+  const { mode, transition, back, setMode } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
 
@@ -19,12 +23,17 @@ function Appointment(props) {
       student: name,
       interviewer
     };
-    props.bookInterview(props.id, interview)
-    .then (() => transition(SHOW));
- 
-  }
+    
+    setMode(SAVING);
 
+    props.bookInterview(props.id, interview)
+    .then (() => {
+      transition(SHOW)
+    })
+  }
+ 
   function deleteApp() {
+    setMode(DELETING);
     props.cancelInterview(props.id)
     .then (() => transition(EMPTY));
   }
@@ -47,8 +56,9 @@ function Appointment(props) {
         onSave={save}
         />
     )}
-    
+    {mode === SAVING && <Status message={"Saving..."} />}
+    {mode === DELETING && <Status message={"Deleting..."} />}
      </article>
   ) }
 
- export default Appointment;
+   export default Appointment;
