@@ -65,6 +65,7 @@ xit("calls onSave function when the name is defined", () => {
   expect(onSave).toHaveBeenCalledTimes(1);
   expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", null);
 });
+/* 4. submits the name entered by the user */
 it("submits the name entered by the user", () => {
   const onSave = jest.fn();
   const { getByText, getByPlaceholderText } = render(
@@ -78,5 +79,7 @@ it("submits the name entered by the user", () => {
 
   expect(onSave).toHaveBeenCalledTimes(1);
   expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", null);
-})
+});
+
+
 });
