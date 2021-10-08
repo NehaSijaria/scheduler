@@ -1,8 +1,19 @@
 # Interview Scheduler
+Single page application enables user to book/edit/cancel interview built using React.
+
+#Database
+psql
 
 ## Setup
 
 Install dependencies with `npm install`.
+# Dependencies
+
+- axios
+- @testing-library/react-hooks
+- react-test-renderer
+- psql
+- React
 
 ## Running Webpack Development Server
 
@@ -21,3 +32,4 @@ npm test
 ```sh
 npm run storybook
 ```
+## Cypress for ETE testing

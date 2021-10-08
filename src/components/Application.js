@@ -16,7 +16,6 @@ export default function Application(props) {
       axios.get("/api/days"),
       axios.get("/api/appointments"),
       axios.get("/api/interviewers"),
-      // axios.get("/api/debug/reset")
       ])
       .then(
       (all) => {
@@ -29,10 +28,8 @@ export default function Application(props) {
        }));
       });
   }, []); 
-  
-  // const appointments = getAppointmentsForDay(state, state.day);
+   console.log('state11111', state);
   const interviewers = getInterviewersForDay(state, state.day)
-
   const appointments = getAppointmentsForDay(state, state.day).map(
     appointment => {
       return (

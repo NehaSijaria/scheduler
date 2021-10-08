@@ -8,6 +8,7 @@ const formatSpots = (spots) => {
   }
   return spots ? spots + " spots remaining" : "no spots remaining";
 };
+
 export default function DayListItem(props) {
   const itemClass = classNames("day-list__item", {
     "day-list__item--selected": props.selected,
