@@ -3,11 +3,11 @@ Single page application enables user to book/edit/cancel interview built using R
 Data is persisted by the API server using a PostgreSQL database.
 
 ## Features
-# Interviews can be booked between Weekdays in an empty slot.
-# A user can cancel/edit details an existing interview.
-# The expected day updates the number of spots available when an interview is booked or canceled.
-# A user is presented with a confirmation when they attempt to cancel an interview.
-# A user is shown a status indicator while asynchronous operations are in progress.
+- Interviews can be booked between Weekdays in an empty slot.
+- A user can cancel/edit details an existing interview.
+- The expected day updates the number of spots available when an interview is booked or canceled.
+- A user is presented with a confirmation when they attempt to cancel an interview.
+- A user is shown a status indicator while asynchronous operations are in progress.
 
 ## Final Product
 
