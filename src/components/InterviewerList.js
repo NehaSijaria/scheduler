@@ -18,7 +18,6 @@ import { types } from "@storybook/addons";
              key={person.id}
              avatar={person.avatar}
              name={person.name}
-            //  setInterviewer={props.setInterviewer}
             setInterviewer={(event) => props.onChange(person.id)}
             selected={person.id === props.value}
            />
