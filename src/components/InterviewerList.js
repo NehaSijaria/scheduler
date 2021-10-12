@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 
  import InterviewerListItem from "components/InterviewerListItem";
- import Form from "./Appointment/Form";
  import "components/InterviewerList.scss";
-import { types } from "@storybook/addons";
 
  function InterviewerList(props) {
    const { interviewers } = props;

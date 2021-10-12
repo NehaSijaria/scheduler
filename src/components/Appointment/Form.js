@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Button from 'components/Button'
 
 export default function Form(props) {
-  const {interviewers, onCancel} = props;
+  const { onCancel } = props;
   const [name, setName] = useState(props.name || ""); 
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");

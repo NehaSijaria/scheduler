@@ -1,7 +1,7 @@
 import { renderHook, act } from "@testing-library/react-hooks";
 
 import useVisualMode from "hooks/useVisualMode";
-import transition from "hooks/useVisualMode";
+// import transition from "hooks/useVisualMode";
 
 const FIRST = "FIRST";
 

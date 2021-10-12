@@ -20,7 +20,7 @@ function Appointment(props) {
   const ERROR_SAVE = "ERROR_SAVE";
   const ERROR_DELETE = "ERROR_DELETE";
 
-  const { mode, transition, back, setMode } = useVisualMode(
+  const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
 
@@ -30,7 +30,6 @@ function Appointment(props) {
       interviewer
     };
     
-    // setMode(SAVING);
     transition(SAVING);
 
     props.bookInterview(props.id, interview)

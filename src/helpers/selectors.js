@@ -28,7 +28,7 @@ export function getInterviewersForDay(state,day){
   if (!daymatch[0]) {
     return [];
   }
-  for (let interviewer of daymatch [0].interviewers) {
+  for (let interviewer of daymatch[0].interviewers) {
     interViewerList.push(state.interviewers[interviewer]);
   }
  return interViewerList;

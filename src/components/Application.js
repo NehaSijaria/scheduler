@@ -27,7 +27,7 @@ export default function Application(props) {
         interviewers: all[2].data
        }));
       });
-  }, []); 
+  }, [setState]); 
    console.log('state11111', state);
   const interviewers = getInterviewersForDay(state, state.day)
   const appointments = getAppointmentsForDay(state, state.day).map(
